@@ -1,11 +1,3 @@
-# Prompt de Comando =============================================
-# python -m venv env_agendaweb - Criar o ambiente virtual
-# .\env_agendaweb\Scripts\activate - Ativar o ambiente virtual
-# pip install flask - Instalar o flask
-# flask --app agendaweb run --debug - Iniciar o servidor do Flask
-# pip install mysql-connector-python
-# ===============================================================
-
 import mysql.connector
 from flask import Flask, render_template, request
 
@@ -20,13 +12,26 @@ cursor = conexao.cursor()
 
 app = Flask(__name__, static_url_path='/static')
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
+
+    if request.method == 'POST':
+        usuario = request.form['usuario']
+        senha = request.form['senha']
+        
+    #sql_credencial = f'SELECT 1 FROM USUARIO WHERE NOME = {usuario} AND SENHA = {senha}'
+    #cursor.execute(sql_credencial)
+    #result_sql_credencial = cursor.fetchall()
+    #print(result_sql_credencial)
+    print(f'{usuario} e {senha}')
     return render_template("index.html")
 
-@app.route('/recupere')
+
+@app.route('/homepage')
 def recuperar():
-    return render_template("recuperar.html")
+    return render_template("homepage.html")
 
 if __name__ == '__main__':
     app.run()
+
+# SELECT 1 FROM USUARIO WHERE NOME = {nome} AND SENHA = {senha}; 

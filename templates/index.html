@@ -5,33 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agenda Beauty</title>
-    <link rel="icon" type="image/x-icon" href="">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_index.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     
     <div class="wrapper">
-        <form action="">
-            <h1>Login</h1>
+        <form method="POST" action="">
+            <h1>Agenda Beauty</h1>
             <div class="input-box">
-                <input type="text" placeholder="Usuário" required> 
+                <input name="usuario" type="text" placeholder="Usuário" required> 
                 <i class='bx bxs-user'></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Senha" required>
+                <input name="senha" type="password" placeholder="Senha" required>
                 <i class='bx bxs-lock-alt' ></i>
             </div>
 
-            <div class="remember-forgot">
-                <label> <input type="checkbox"> Lembrar-se de mim </label>
-                <a href="{{ url_for('recuperar') }}">Esqueci a Senha</a>
-            </div>
-
             <button type="submit" class="btn">Login</button>
-
-            <div class="register-link">
-                <p>Não possui uma conta? <a href="#">Crie uma</a></p>
 
             </div>
         </form>
