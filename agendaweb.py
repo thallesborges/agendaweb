@@ -19,16 +19,11 @@ conexao = mysql.connector.connect(
 
 cursor = conexao.cursor()
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 
 @app.route('/')
 def index():
     return render_template("index.html")
-
-@app.route('/processar', methods=['POST'])
-def processar():
-    texto = request.form['texto']
-    return f'Texto digitado: {texto}'
 
 if __name__ == '__main__':
     app.run()
