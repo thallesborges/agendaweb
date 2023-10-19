@@ -3,12 +3,21 @@
 # .\env_agendaweb\Scripts\activate - Ativar o ambiente virtual
 # pip install flask - Instalar o flask
 # flask --app agendaweb run --debug - Iniciar o servidor do Flask
-# pip install gunicorn - Instalar o gunicorn (Procfile)
 # pip freeze > requirements.txt - Lista das ferramentas utilizadas
+# pip install mysql-connector-python
 # ================================================================
 
+import mysql.connector
+from flask import Flask, render_template, request
 
-from flask import Flask, render_template
+conexao = mysql.connector.connect(
+    host = 'localhost',
+    user = 'root',
+    password = '1234',
+    database = 'agenda'
+)
+
+cursor = conexao.cursor()
 
 app = Flask(__name__)
 
@@ -16,9 +25,10 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route('/user/<user>')
-def user(user):
-    return render_template("users.html", user = user)
+@app.route('/processar', methods=['POST'])
+def processar():
+    texto = request.form['texto']
+    return f'Texto digitado: {texto}'
 
 if __name__ == '__main__':
     app.run()
